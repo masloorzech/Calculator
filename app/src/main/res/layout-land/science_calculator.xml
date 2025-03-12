@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/acctionButtonMenu2"
+        android:id="@+id/backToMenuButton"
         style="@style/CustomOperationButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -17,12 +17,11 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonRandomFromXToY"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonRandomFromXToY"
+        app:layout_constraintStart_toEndOf="@+id/acctionButtonACtanX"
         app:layout_constraintWidth_percent="0.125" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/calculationPanel"
         style="@style/CustomTextField"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -34,13 +33,13 @@
         android:textAlignment="viewEnd"
         android:textSize="60sp"
         android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/MemoryPanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.625" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/MemoryPanel"
         style="@style/CustomMemoryTextField"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -52,7 +51,7 @@
         android:maxLength="32"
         android:maxLines="1"
         android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/calculationPanel"
         app:layout_constraintHeight_percent="0.25"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +60,7 @@
         tools:ignore="RtlHardcoded" />
 
     <Button
-        android:id="@+id/actionButtonAC"
+        android:id="@+id/menuButtonSimpleCalculator"
         style="@style/CustomActionButtonAC"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -71,8 +70,24 @@
         android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonASinX"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonASinX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonChangeSign"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonChangeSign"
+        app:layout_constraintWidth_percent="0.125" />
+
+
+    <Button
+        android:id="@+id/actionButtonBackspace"
+        style="@style/CustomActionButtonAC"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:text=">"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toEndOf="@+id/menuButtonSimpleCalculator"
+        app:layout_constraintTop_toTopOf="@+id/menuButtonSimpleCalculator"
         app:layout_constraintWidth_percent="0.125" />
 
     <Button
@@ -84,10 +99,9 @@
         android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/actionButtonAC"
-        app:layout_constraintTop_toTopOf="@+id/actionButtonAC"
+        app:layout_constraintStart_toEndOf="@+id/acctionButtonXModY"
+        app:layout_constraintTop_toTopOf="@+id/acctionButtonXModY"
         app:layout_constraintWidth_percent="0.125" />
-
 
     <Button
         android:id="@+id/actionButtonPercentage"
@@ -99,8 +113,8 @@
         android:textSize="34sp"
 
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/actionButtonChangeSign"
-        app:layout_constraintTop_toTopOf="@+id/actionButtonChangeSign"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonBackspace"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonBackspace"
         app:layout_constraintWidth_percent="0.125" />
 
     <Button
@@ -124,8 +138,8 @@
         android:text="7"
         android:textSize="34sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonACosX"
-        app:layout_constraintTop_toBottomOf="@+id/actionButtonAC"
+        app:layout_constraintStart_toEndOf="@+id/acctionButtonASinX"
+        app:layout_constraintTop_toBottomOf="@+id/menuButtonSimpleCalculator"
         app:layout_constraintWidth_percent="0.125" />
 
     <Button
@@ -138,7 +152,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/valueButton7"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toEndOf="@+id/valueButton7"
-        app:layout_constraintTop_toBottomOf="@+id/actionButtonChangeSign"
         app:layout_constraintWidth_percent="0.125" />
 
     <Button
@@ -177,7 +190,7 @@
         android:text="4"
         android:textSize="34sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonATanX"
+        app:layout_constraintStart_toEndOf="@+id/acctionButtonACosX"
         app:layout_constraintTop_toBottomOf="@+id/valueButton7"
         app:layout_constraintWidth_percent="0.125" />
 
@@ -231,7 +244,7 @@
         android:text="1"
         android:textSize="34sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonACtanX"
+        app:layout_constraintStart_toEndOf="@+id/acctionButtonATanX"
         app:layout_constraintTop_toBottomOf="@+id/valueButton4"
         app:layout_constraintWidth_percent="0.125" />
 
@@ -340,7 +353,7 @@
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/MemoryPanel"
         app:layout_constraintWidth_percent="0.125" />
 
     <Button
@@ -351,8 +364,8 @@
         android:text="sin()"
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonXToPowerY"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonXToPowerY"
+        app:layout_constraintStart_toStartOf="@+id/acctionButtonCosX"
+        app:layout_constraintTop_toTopOf="@+id/acctionButtonXToPowerMinusY"
         app:layout_constraintWidth_percent="0.125" />
 
     <Button
@@ -363,9 +376,9 @@
         android:text="cos()"
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonXToPowerMinusY"
         app:layout_constraintTop_toBottomOf="@+id/acctionButtonSinX"
-        app:layout_constraintWidth_percent="0.125" />
+        app:layout_constraintWidth_percent="0.125"
+        tools:layout_editor_absoluteX="183dp" />
 
     <Button
         android:id="@+id/acctionButtonXSquare"
@@ -430,29 +443,15 @@
         app:layout_constraintWidth_percent="0.125" />
 
     <Button
-        android:id="@+id/acctionButtonRandomFromXToY"
-        style="@style/CustomOperationButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="rand(X,Y)"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonXModY"
-        app:layout_constraintTop_toBottomOf="@+id/acctionButtonACtanX"
-        app:layout_constraintWidth_percent="0.125" />
-
-    <Button
         android:id="@+id/acctionButtonXModY"
         style="@style/CustomOperationButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="XmodY"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonLogX"
-        app:layout_constraintTop_toBottomOf="@+id/acctionButtonCTanX"
+        app:layout_constraintStart_toEndOf="@+id/acctionButtonXToPowerY"
+        app:layout_constraintTop_toTopOf="@+id/acctionButtonXToPowerY"
         app:layout_constraintWidth_percent="0.125" />
 
     <Button
@@ -463,9 +462,9 @@
         android:text="tan()"
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonLogNX"
         app:layout_constraintTop_toBottomOf="@+id/acctionButtonCosX"
-        app:layout_constraintWidth_percent="0.125" />
+        app:layout_constraintWidth_percent="0.125"
+        tools:layout_editor_absoluteX="183dp" />
 
     <Button
         android:id="@+id/acctionButtonCTanX"
@@ -475,9 +474,9 @@
         android:text="ctan()"
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/actionButtonLnx"
         app:layout_constraintTop_toBottomOf="@+id/acctionButtonTanX"
-        app:layout_constraintWidth_percent="0.125" />
+        app:layout_constraintWidth_percent="0.125"
+        tools:layout_editor_absoluteX="183dp" />
 
     <Button
         android:id="@+id/valueButton2"
@@ -531,7 +530,7 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonMenu2"
+        app:layout_constraintStart_toEndOf="@+id/backToMenuButton"
         app:layout_constraintTop_toBottomOf="@+id/valueButton2"
         app:layout_constraintWidth_percent="0.125" />
 
