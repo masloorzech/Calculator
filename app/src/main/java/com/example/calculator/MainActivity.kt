@@ -82,6 +82,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
+
         outputScreen = findViewById(R.id.textView2)
         bufferScreen = findViewById(R.id.textView)
         val valButtonsIds = listOf(

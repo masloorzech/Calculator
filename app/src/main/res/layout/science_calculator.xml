@@ -101,9 +101,9 @@
         android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/actionButtonMultiply"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintWidth_percent="0.25"
-        tools:layout_editor_absoluteX="308dp" />
+        app:layout_constraintWidth_percent="0.25" />
 
     <Button
         android:id="@+id/valueButton7"
