@@ -1,0 +1,24 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Shadow-->
+    <item
+        android:right="8dp"
+        android:left="8dp"
+        android:top="8dp"
+        android:bottom="8dp">
+        <shape>
+            <solid android:color="@color/foreground_shadow"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+    <!--Front -->
+    <item
+        android:right="12dp"
+        android:left="8dp"
+        android:top="8dp"
+        android:bottom="12dp">
+        <shape>
+            <solid android:color="@color/foreground"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+</layer-list>

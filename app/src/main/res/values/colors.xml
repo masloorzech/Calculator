@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#f4f5f4</color>
+    <color name="background">#5C629E</color>
+    <color name="foreground">#B83B5E</color>
+    <color name="foreground_shadow">#78273E</color>
+    <color name="foreground_light">#B84E6C</color>
+    <color name="ac_button">#6A2C70</color>
+    <color name="ac_button_shadow">#411B45</color>
+    <color name="ac_button_light">#733B78</color>
+    <color name="science_button">#ED8455</color>
+    <color name="science_button_shadow">#E0622B</color>
+    <color name="science_button_light">#EF966F</color>
+</resources>

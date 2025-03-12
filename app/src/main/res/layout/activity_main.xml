@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/background"
+    >
+
+    <TextView
+        style="@style/CustomTextField"
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:clickable="false"
+        android:gravity="bottom|end"
+        android:maxLength="12"
+        android:maxLines="1"
+        android:textAlignment="viewEnd"
+        android:textSize="60sp"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.19"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/CustomMemoryTextField"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeTextType="uniform"
+        android:breakStrategy="high_quality"
+        android:clickable="false"
+        android:gravity="bottom|left"
+        android:maxLength="32"
+        android:maxLines="1"
+        android:textAlignment="viewStart"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/actionButtonAC"
+        style="@style/CustomActionButtonAC"
+        android:layout_width="0dp"
+        android:autoSizeTextType="uniform"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:autoSizeMaxTextSize="30dp"
+        android:text="@string/ac"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toStartOf="@id/actionButtonChangeSign"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/actionButtonChangeSign"
+        style="@style/CustomOperationButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="+/-"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actionButtonAC"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@id/actionButtonAC"
+        app:layout_constraintTop_toTopOf="@id/actionButtonAC"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/actionButtonPercentage"
+        style="@style/CustomOperationButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="%"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actionButtonChangeSign"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonChangeSign"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonChangeSign"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/actionButtonDivide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="÷"
+        style="@style/CustomOperationButton"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/actionButtonPercentage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonPercentage"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonPercentage" />
+
+    <Button
+        android:id="@+id/valueButton7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="7"
+        style="@style/CustomOperationButton"
+        android:textSize="34sp"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonAC"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/valueButton8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="8"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton7"
+        style="@style/CustomOperationButton"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton7"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonChangeSign"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/valueButton9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="9"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton8"
+        style="@style/CustomOperationButton"
+
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton8"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonPercentage"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/actionButtonMultiply"
+        style="@style/CustomOperationButton"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="×"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton9"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonDivide" />
+
+    <Button
+        android:id="@+id/valueButton4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="4"
+        android:textSize="34sp"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/CustomOperationButton"
+
+        app:layout_constraintTop_toBottomOf="@+id/valueButton7"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/valueButton5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="5"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton4"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton4"
+        style="@style/CustomOperationButton"
+
+        app:layout_constraintTop_toBottomOf="@+id/valueButton8"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/valueButton6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="6"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton5"
+        app:layout_constraintHeight_percent="0.14"
+        style="@style/CustomOperationButton"
+        app:layout_constraintStart_toEndOf="@+id/valueButton5"
+        app:layout_constraintTop_toBottomOf="@+id/valueButton9"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/actionButtonSub"
+        style="@style/CustomOperationButton"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="-"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton6"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonMultiply"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/valueButton1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="1"
+        android:textSize="34sp"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valueButton4"
+        style="@style/CustomOperationButton"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/valueButton2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="2"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton1"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton1"
+        app:layout_constraintTop_toBottomOf="@+id/valueButton5"
+        style="@style/CustomOperationButton"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/valueButton3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="3"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton2"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton2"
+        app:layout_constraintTop_toBottomOf="@+id/valueButton6"
+        style="@style/CustomOperationButton"
+
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/actionButtonAdd"
+        style="@style/CustomOperationButton"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="+"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton3"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton3"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonSub"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/valueButton0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="0"
+        android:textSize="34sp"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valueButton1"
+        style="@style/CustomOperationButton"
+
+        app:layout_constraintWidth_percent="0.5" />
+
+    <Button
+        android:id="@+id/valueButtonDot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="."
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton0"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButton0"
+        app:layout_constraintTop_toBottomOf="@+id/valueButton3"
+        style="@style/CustomOperationButton"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <Button
+        android:id="@+id/actionButtonEquals"
+        style="@style/CustomOperationButton"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="="
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valueButton0"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/valueButtonDot"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonAdd"
+        app:layout_constraintWidth_percent="0.25" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
