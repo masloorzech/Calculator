@@ -76,7 +76,7 @@
         android:textSize="34sp"
         app:layout_constraintHeight_percent="0.075"
         app:layout_constraintStart_toEndOf="@+id/menuButtonSimpleCalculator"
-        app:layout_constraintTop_toBottomOf="@+id/acctionButtonCosX"
+        app:layout_constraintTop_toBottomOf="@+id/actionButtonCosX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
@@ -88,8 +88,8 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonTenToX"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonTenToX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonTenToX"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonTenToX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
@@ -273,7 +273,7 @@
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonSqrt"
+        android:id="@+id/actionButtonSqrt"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -281,83 +281,83 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/actionButtonLnx"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonXFactorial"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonXFactorial"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonXToPowerY"
+        android:id="@+id/actionButtonXToPowerY"
         style="@style/CustomOperationButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="xʸ"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonXToPowerMinusY"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonXToPowerMinusY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonEToPowerX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonEToPowerX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonASinX"
+        android:id="@+id/actionButtonASinX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="asin()"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonSinX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonSinX"
         app:layout_constraintHeight_percent="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonATanX"
+        android:id="@+id/actionButtonATanX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="atan()"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonTanX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonTanX"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonACosX"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonACosX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonACosX"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonACosX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonACosX"
+        android:id="@+id/actionButtonACosX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="acos()"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonCosX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonCosX"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonASinX"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonASinX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonASinX"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonASinX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonACtanX"
+        android:id="@+id/actionButtonACtanX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="actan()"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonCTanX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonCTanX"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonATanX"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonATanX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonATanX"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonATanX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonTenToX"
+        android:id="@+id/actionButtonTenToX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="10ˣ"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonSqrt"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonSqrt"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonXSquare"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonXSquare"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
@@ -367,25 +367,25 @@
         android:layout_height="0dp"
         android:text="lnx"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonACosX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonACosX"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonLogX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonLogX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonXFactorial"
+        android:id="@+id/actionButtonXFactorial"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="x!"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonLogX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonLogX"
         app:layout_constraintHeight_percent="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonSinX"
+        android:id="@+id/actionButtonSinX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -397,113 +397,113 @@
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonCosX"
+        android:id="@+id/actionButtonCosX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="cos()"
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonSinX"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonSinX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonSinX"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonSinX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonXSquare"
+        android:id="@+id/actionButtonXSquare"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="x²"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonXFactorial"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonXFactorial"
         app:layout_constraintHeight_percent="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonLogNX"
+        android:id="@+id/actionButtonLogNX"
         style="@style/CustomOperationButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="logₓy"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonATanX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonATanX"
         app:layout_constraintHeight_percent="0.075"
         app:layout_constraintStart_toEndOf="@+id/actionButtonLnx"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonEToPowerX"
+        android:id="@+id/actionButtonEToPowerX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="eˣ"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonLogNX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonLogNX"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonSqrt"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonSqrt"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonXToPowerMinusY"
+        android:id="@+id/actionButtonXToPowerMinusY"
         style="@style/CustomOperationButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="x⁻ʸ"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonACtanX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonACtanX"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonLogNX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonLogNX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonLogX"
+        android:id="@+id/actionButtonLogX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="logx"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonASinX"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonASinX"
         app:layout_constraintHeight_percent="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonXModY"
+        android:id="@+id/actionButtonXModY"
         style="@style/CustomOperationButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="XmodY"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/acctionButtonXToPowerY"
+        app:layout_constraintBottom_toTopOf="@+id/actionButtonXToPowerY"
         app:layout_constraintHeight_percent="0.075"
         app:layout_constraintStart_toEndOf="@+id/actionButtonChangeSign"
         app:layout_constraintTop_toTopOf="@+id/actionButtonChangeSign"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonTanX"
+        android:id="@+id/actionButtonTanX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="tan()"
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonCosX"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonCosX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonCosX"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonCosX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button
-        android:id="@+id/acctionButtonCTanX"
+        android:id="@+id/actionButtonCTanX"
         style="@style/CustomScienceButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="ctan()"
         android:textSize="14sp"
         app:layout_constraintHeight_percent="0.075"
-        app:layout_constraintStart_toEndOf="@+id/acctionButtonTanX"
-        app:layout_constraintTop_toTopOf="@+id/acctionButtonTanX"
+        app:layout_constraintStart_toEndOf="@+id/actionButtonTanX"
+        app:layout_constraintTop_toTopOf="@+id/actionButtonTanX"
         app:layout_constraintWidth_percent="0.25" />
 
     <Button

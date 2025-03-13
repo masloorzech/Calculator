@@ -304,7 +304,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="⚙️"
-        android:textSize="34sp"
+        android:textSize="32sp"
         app:layout_constraintHeight_percent="0.14"
         app:layout_constraintStart_toStartOf="parent"
 

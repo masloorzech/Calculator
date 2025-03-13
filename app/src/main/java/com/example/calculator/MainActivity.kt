@@ -2,9 +2,10 @@ package com.example.calculator
 
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -12,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kotlin.math.E
-import kotlin.math.PI
 import kotlin.math.acos
 import kotlin.math.asin
 import kotlin.math.atan
@@ -25,7 +25,6 @@ import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.tan
 import androidx.core.content.edit
-import androidx.core.text.isDigitsOnly
 
 
 class MainActivity : AppCompatActivity() {
@@ -53,6 +52,12 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
+        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
+        val lastScreen = prefs.getString("last_screen", "menu")
+        if (lastScreen=="menu"){
+            return
+        }
+
         if (output != null) {
             outState.putDouble("output", output ?: 0.0)
         } else {
@@ -67,7 +72,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-
+        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
+        val lastScreen = prefs.getString("last_screen", "menu")
+        if (lastScreen=="menu"){
+            return
+        }
         output = if (savedInstanceState.getDouble("output", Double.NaN).isNaN()) {
             null
         } else {
@@ -80,7 +89,6 @@ class MainActivity : AppCompatActivity() {
         isBracket = savedInstanceState.getBoolean("isBracket", false)
         isNegative = savedInstanceState.getBoolean("isNegative", false)
     }
-
 
     private fun configureCommonElements(){
         configureCommonDisplays()
@@ -114,15 +122,15 @@ class MainActivity : AppCompatActivity() {
 
         mapOf(
             R.id.menuButtonSimpleCalculator to  { actionButtonACClick() },
-            R.id.actionButtonAdd to             { actionButtonAddClick() },
-            R.id.actionButtonSub to             { actionButtonSubClick() },
-            R.id.actionButtonMultiply to        { actionButtonMulClick() },
-            R.id.actionButtonDivide to          { actionButtonDivClick() },
-            R.id.actionButtonChangeSign to      { actionButtonChangeSign() },
-            R.id.actionButtonEquals to          { calculateExpression() },
-            R.id.valueButtonDot to              { actionButtonDotClick() },
-            R.id.actionButtonPercentage to      { actionButtonPercentageClick() },
-            R.id.actionButtonBackspace to       {actionButtonBackspaceClick() }
+            R.id.actionButtonAdd            to  { actionButtonAddClick() },
+            R.id.actionButtonSub            to  { actionButtonSubClick() },
+            R.id.actionButtonMultiply       to  { actionButtonMulClick() },
+            R.id.actionButtonDivide         to  { actionButtonDivClick() },
+            R.id.actionButtonChangeSign     to  { actionButtonChangeSign() },
+            R.id.actionButtonEquals         to  { calculateExpression() },
+            R.id.valueButtonDot             to  { actionButtonDotClick() },
+            R.id.actionButtonPercentage     to  { actionButtonPercentageClick() },
+            R.id.actionButtonBackspace      to  {actionButtonBackspaceClick() }
         ).forEach { (id, action) ->
             findViewById<Button>(id).apply {
                 setOnClickListener { action() }
@@ -131,21 +139,52 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun configureScienceButtons(){
+        mapOf(
+            R.id.actionButtonXSquare    to      {actionButtonSquareClick()},
+            R.id.actionButtonTenToX     to      {actionButton10ToX()},
+            R.id.actionButtonXModY      to      {actionButtonXModYClick()},
+            R.id.actionButtonXFactorial to      {actionButtonFactorialXClick()},
+            R.id.actionButtonSqrt       to      {actionButtonSqrtClick()},
+            R.id.actionButtonEToPowerX  to      {actionButtonEtoPowerXClick()},
+            R.id.actionButtonLogX       to      {actionButtonLogX()},
+            R.id.actionButtonLnx        to      {actionButtonLnXClick()},
+            R.id.actionButtonLogNX      to      {actionButtonLogXYClick()},
+            R.id.actionButtonXToPowerY  to      {actionButtonXToPowerYClick()},
+            R.id.actionButtonXToPowerMinusY to  {actionButtonXToPowerMinusYClick()},
+            R.id.actionButtonSinX       to      {trigonometryHandling("SIN")},
+            R.id.actionButtonCosX       to      {trigonometryHandling("COS")},
+            R.id.actionButtonTanX       to      {trigonometryHandling("TAN")},
+            R.id.actionButtonCTanX       to      {trigonometryHandling("CTAN")},
+            R.id.actionButtonASinX       to      {trigonometryHandling("ASIN")},
+            R.id.actionButtonACosX       to      {trigonometryHandling("ACOS")},
+            R.id.actionButtonATanX       to      {trigonometryHandling("ATAN")},
+            R.id.actionButtonACtanX       to      {trigonometryHandling("ACTAN")}
+
+            ).forEach{ (id,action)->findViewById<Button>(id).apply {
+                setOnClickListener { action() }
+        }}
+    }
+
+
     private fun openScienceCalculator(){
         //Setting content view to science calculator
         setContentView(R.layout.science_calculator)
-        //Adjusting padding if view is avaliable
+        //Adjusting padding if view is available
         adjustPadding()
-
+        //Configuring common elements, because science calculator uses the same resources as simple, just adding its own to layout.
         configureCommonElements()
+        //Configure science buttons only for science calculator
+        configureScienceButtons();
+
     }
 
     private fun openSimpleCalculator(){
-        //Setting content view to simple calculator
+        //Setting content view to simple calculator.
         setContentView(R.layout.activity_main)
-        //Adjusting padding if view is avaliable
+        //Adjusting padding if view is available.
         adjustPadding()
-
+        //Configuring only common elements, because science calculator uses the same resources in it's core.
         configureCommonElements()
     }
 
@@ -159,10 +198,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openMenu(){
-        //If user rotates screen in menu blocking rotation, menu has onlu portrait view.
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        //Setting content view to manu layout
         setContentView(R.layout.menu)
-        //Adjusting padding if view is avaliable
+        //Adjusting padding if view is available.
         adjustPadding()
         //Buttons in menu initialization.
         configureMenuButtons()
@@ -178,22 +216,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-
         //Setting starting state application in menu view.
         val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
         val lastScreen = prefs.getString("last_screen", "menu")
         //Checking if screen is in menu or somewhere else.
-        if (lastScreen == "menu"){
-            //Opening menu if last state was menu.
-            openMenu()
-        }else {
-            //If user try to rotate in other view then just rotate screen because calculators
-            //have portraits ant landscape views.
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-            when (lastScreen) {
-                "science" -> openScienceCalculator()
-                "simple" -> openSimpleCalculator()
-            }
+        when (lastScreen) {
+            "science" -> openScienceCalculator()
+            "simple" -> openSimpleCalculator()
+            else -> openMenu()
         }
     }
 
@@ -213,107 +243,6 @@ class MainActivity : AppCompatActivity() {
             saveState("science")
             openScienceCalculator()
         }
-    }
-
-    private fun temp(){
-
-        //Menu handler:
-
-
-        val orientation = resources.configuration.orientation
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            val buttonlnx: Button = findViewById(R.id.actionButtonLnx)
-
-            buttonlnx.setOnClickListener {
-                actionButtonLnXClick()
-            }
-
-            val buttonsqrt: Button = findViewById(R.id.acctionButtonSqrt)
-
-            buttonsqrt.setOnClickListener {
-                actionButtonSqrtClick()
-            }
-
-            val buttonXToPowerY: Button = findViewById(R.id.acctionButtonXToPowerY)
-            buttonXToPowerY.setOnClickListener {
-                actionButtonXToPowerYClick()
-            }
-
-            val buttonXToPowerMinusY: Button = findViewById(R.id.acctionButtonXToPowerMinusY)
-            println("here")
-            buttonXToPowerMinusY.setOnClickListener {
-                actionButtonXToPowerMinusYClick()
-            }
-
-            val buttonSin: Button = findViewById(R.id.acctionButtonSinX)
-            buttonSin.setOnClickListener {
-            }
-
-            val buttonASin: Button = findViewById(R.id.acctionButtonASinX)
-            buttonASin.setOnClickListener {
-            }
-
-            val buttonCos: Button = findViewById(R.id.acctionButtonCosX)
-            buttonCos.setOnClickListener {
-            }
-
-            val buttonACos: Button = findViewById(R.id.acctionButtonACosX)
-            buttonACos.setOnClickListener {
-            }
-
-            val buttonTan: Button = findViewById(R.id.acctionButtonTanX)
-            buttonTan.setOnClickListener {
-            }
-
-            val buttonATan: Button = findViewById(R.id.acctionButtonATanX)
-            buttonATan.setOnClickListener {
-            }
-
-            val buttonCTan: Button = findViewById(R.id.acctionButtonCTanX)
-            buttonCTan.setOnClickListener {
-            }
-
-            val buttonACTan: Button = findViewById(R.id.acctionButtonACtanX)
-            buttonACTan.setOnClickListener {
-            }
-
-            val buttonFactorial: Button = findViewById(R.id.acctionButtonXFactorial)
-            buttonFactorial.setOnClickListener {
-                actionButtonFactorialXClick()
-            }
-
-            val buttonSquare: Button = findViewById(R.id.acctionButtonXSquare)
-            buttonSquare.setOnClickListener {
-                actionButtonSquareClick()
-            }
-
-            val buttonLogXY: Button = findViewById(R.id.acctionButtonLogNX)
-            buttonLogXY.setOnClickListener {
-
-                actionButtonLogXYClick()
-            }
-
-            val buttonEToPowerX: Button = findViewById(R.id.acctionButtonEToPowerX)
-            buttonEToPowerX.setOnClickListener {
-                actionButtonEtoPowerXClick()
-            }
-
-            val buttonLogX: Button = findViewById(R.id.acctionButtonLogX)
-            buttonLogX.setOnClickListener {
-                actionButtonLogX()
-            }
-
-            val buttonXmodY: Button = findViewById(R.id.acctionButtonXModY)
-            buttonXmodY.setOnClickListener {
-                actionButtonXModYClick()
-            }
-
-            val button10ToX: Button = findViewById(R.id.acctionButtonTenToX)
-            button10ToX.setOnClickListener {
-                actionButton10ToX()
-            }
-        }
-
     }
 
     private fun calculateExpression(){
@@ -358,6 +287,8 @@ class MainActivity : AppCompatActivity() {
         isNegative = false
         isBracket = false
         operation = null
+        val backspaceButton : Button = findViewById(R.id.actionButtonBackspace)
+        backspaceButton.text = ">"
     }
 
     //Single click operations
@@ -403,7 +334,6 @@ class MainActivity : AppCompatActivity() {
         updateBuffer("ln")
         setTextToView(output.toString())
     }
-
 
     private fun actionButtonEtoPowerXClick(){
         if (!possibleToComputate()){
@@ -468,7 +398,7 @@ class MainActivity : AppCompatActivity() {
         addTextToView(sign)
     }
 
-    private val trygonometryFunctions = mapOf(
+    private val trigonometryFunctions = mapOf(
         "SIN" to { output = sin(outputScreen.text.toString().toDouble()) },
         "ASIN" to { output = asin(outputScreen.text.toString().toDouble()) },
         "COS" to { output = cos(outputScreen.text.toString().toDouble()) },
@@ -479,14 +409,14 @@ class MainActivity : AppCompatActivity() {
         "ACTAN" to { output = atan(outputScreen.text.toString().toDouble()) }
     )
 
-    private fun trygonometryHandeling(type: String) {
+    private fun trigonometryHandling(type: String) {
         if (!possibleToComputate()){
             return
         }
         // Check if the function exists in the map and then invoke it
         try {
-            trygonometryFunctions[type]?.invoke() // Invoke the function corresponding to the type
-            updateBuffer(type)
+            trigonometryFunctions[type]?.invoke() // Invoke the function corresponding to the type
+            updateBuffer(type.lowercase())
             setTextToView(output.toString()) // Update output
         } catch (e: Exception) {
             // Handle the case when the function does not exist or there is an error
@@ -500,8 +430,9 @@ class MainActivity : AppCompatActivity() {
         outputScreen.text = ""
         operation = null
         isBracket = false
+        val backspaceButton : Button = findViewById(R.id.actionButtonBackspace)
+        backspaceButton.text = ">"
     }
-
 
     //Operations with more than one argument.
 
@@ -565,23 +496,36 @@ class MainActivity : AppCompatActivity() {
         }
         addOperationToScreen("÷","DIVISION")
     }
+
     private fun actionButtonLogXYClick(){
         if (!possibleToComputate()){
             return
         }
-        addOperationToScreen("㏒("+outputScreen.text.toString()+", ", "LOGXY")
+
+        val backspaceButton : Button = findViewById(R.id.actionButtonBackspace)
+        backspaceButton.text = ""
+
+
+        val buffer = outputScreen.text.toString()
+        setTextToView("")
+        addOperationToScreen("㏒($buffer, ", "LOGXY")
         isBracket = true
     }
 
-
     private fun actionButtonBackspaceClick(){
+        if (operation=="LOGXY"){
+            return
+        }
         var chars_to_clear = 1
         val buffer : String = outputScreen.text.toString()
         val char: Char = buffer.lastOrNull() ?: return
-        Log.e("Backspace", "Last character: $char")  // Wypisujemy wartość char w logach
+        Log.e("Backspace", "Last character: $char")
         if (char == '-' && outputScreen.text.toString().length == 2){
             isNegative = false
-        }else if(!char.isDigit()){
+        }else if(!char.isDigit() && char!='.' && char!='(' && char!=')'){
+            if (operation=="XMODY"){
+                chars_to_clear = 3
+            }
             operation=null
         }
         outputScreen.text = outputScreen.text.toString().dropLast(chars_to_clear)
@@ -589,6 +533,7 @@ class MainActivity : AppCompatActivity() {
             operation=null
         }
     }
+
     private fun addTextToView(text: String){
         var buffer = outputScreen.text.toString()
         if (isBracket){
@@ -615,7 +560,6 @@ class MainActivity : AppCompatActivity() {
         val buffer: String = getString(R.string.memory_description)
         bufferScreen.text = buffer +" "+ outputScreen.text.toString()+ text
     }
-
 
     private fun valueButtonClick(value: String){
         if (output!=null){
