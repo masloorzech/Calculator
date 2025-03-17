@@ -46,6 +46,17 @@ class MainActivity : AppCompatActivity() {
         "PERCENTAGE" to { a: Double, b: Double -> (a / 100.0) * b }
     )
 
+    private val trigonometryFunctions = mapOf(
+        "SIN" to { output = sin(outputScreen.text.toString().toDouble()) },
+        "ASIN" to { output = asin(outputScreen.text.toString().toDouble()) },
+        "COS" to { output = cos(outputScreen.text.toString().toDouble()) },
+        "ACOS" to { output = acos(outputScreen.text.toString().toDouble()) },
+        "TAN" to { output = tan(outputScreen.text.toString().toDouble()) },
+        "ATAN" to { output = atan(outputScreen.text.toString().toDouble()) },
+        "CTAN" to { output = 1 / tan(outputScreen.text.toString().toDouble()) },
+        "ACTAN" to { output = atan(outputScreen.text.toString().toDouble()) }
+    )
+
     private fun configureCommonElements(){
         configureCommonDisplays()
         configureCommonButtons()
@@ -398,16 +409,6 @@ class MainActivity : AppCompatActivity() {
         addTextToView(sign)
     }
 
-    private val trigonometryFunctions = mapOf(
-        "SIN" to { output = sin(outputScreen.text.toString().toDouble()) },
-        "ASIN" to { output = asin(outputScreen.text.toString().toDouble()) },
-        "COS" to { output = cos(outputScreen.text.toString().toDouble()) },
-        "ACOS" to { output = acos(outputScreen.text.toString().toDouble()) },
-        "TAN" to { output = tan(outputScreen.text.toString().toDouble()) },
-        "ATAN" to { output = atan(outputScreen.text.toString().toDouble()) },
-        "CTAN" to { output = 1 / tan(outputScreen.text.toString().toDouble()) },
-        "ACTAN" to { output = atan(outputScreen.text.toString().toDouble()) }
-    )
 
     private fun trigonometryHandling(type: String) {
         if (!possibleToComputate()){
