@@ -1,11 +1,8 @@
 package com.example.calculator
 
 import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -49,46 +46,16 @@ class MainActivity : AppCompatActivity() {
         "PERCENTAGE" to { a: Double, b: Double -> (a / 100.0) * b }
     )
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
-        val lastScreen = prefs.getString("last_screen", "menu")
-        if (lastScreen=="menu"){
-            return
-        }
-
-        if (output != null) {
-            outState.putDouble("output", output ?: 0.0)
-        } else {
-            outState.putDouble("output", Double.NaN)
-        }
-        outState.putString("bufferScreen", bufferScreen.text.toString())
-        outState.putString("outputScreen", outputScreen.text.toString())
-        outState.putString("operation", operation)
-        outState.putBoolean("isBracket", isBracket)
-        outState.putBoolean("isNegative", isNegative)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
-        val lastScreen = prefs.getString("last_screen", "menu")
-        if (lastScreen=="menu"){
-            return
-        }
-        output = if (savedInstanceState.getDouble("output", Double.NaN).isNaN()) {
-            null
-        } else {
-            savedInstanceState.getDouble("output", 0.0)
-        }
-
-        bufferScreen.text = savedInstanceState.getString("bufferScreen", "")
-        outputScreen.text = savedInstanceState.getString("outputScreen", "")
-        operation = savedInstanceState.getString("operation", null)
-        isBracket = savedInstanceState.getBoolean("isBracket", false)
-        isNegative = savedInstanceState.getBoolean("isNegative", false)
-    }
+    private val trigonometryFunctions = mapOf(
+        "SIN" to { output = sin(outputScreen.text.toString().toDouble()) },
+        "ASIN" to { output = asin(outputScreen.text.toString().toDouble()) },
+        "COS" to { output = cos(outputScreen.text.toString().toDouble()) },
+        "ACOS" to { output = acos(outputScreen.text.toString().toDouble()) },
+        "TAN" to { output = tan(outputScreen.text.toString().toDouble()) },
+        "ATAN" to { output = atan(outputScreen.text.toString().toDouble()) },
+        "CTAN" to { output = 1 / tan(outputScreen.text.toString().toDouble()) },
+        "ACTAN" to { output = atan(outputScreen.text.toString().toDouble()) }
+    )
 
     private fun configureCommonElements(){
         configureCommonDisplays()
@@ -155,37 +122,78 @@ class MainActivity : AppCompatActivity() {
             R.id.actionButtonSinX       to      {trigonometryHandling("SIN")},
             R.id.actionButtonCosX       to      {trigonometryHandling("COS")},
             R.id.actionButtonTanX       to      {trigonometryHandling("TAN")},
-            R.id.actionButtonCTanX       to      {trigonometryHandling("CTAN")},
-            R.id.actionButtonASinX       to      {trigonometryHandling("ASIN")},
-            R.id.actionButtonACosX       to      {trigonometryHandling("ACOS")},
-            R.id.actionButtonATanX       to      {trigonometryHandling("ATAN")},
-            R.id.actionButtonACtanX       to      {trigonometryHandling("ACTAN")}
+            R.id.actionButtonCTanX      to      {trigonometryHandling("CTAN")},
+            R.id.actionButtonASinX      to      {trigonometryHandling("ASIN")},
+            R.id.actionButtonACosX      to      {trigonometryHandling("ACOS")},
+            R.id.actionButtonATanX      to      {trigonometryHandling("ATAN")},
+            R.id.actionButtonACtanX      to      {trigonometryHandling("ACTAN")}
 
             ).forEach{ (id,action)->findViewById<Button>(id).apply {
                 setOnClickListener { action() }
         }}
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
+        val lastScreen = prefs.getString("last_screen", "menu")
+        if (lastScreen=="menu"){
+            return
+        }
+
+        if (output != null) {
+            outState.putDouble("output", output ?: 0.0)
+        } else {
+            outState.putDouble("output", Double.NaN)
+        }
+        outState.putString("bufferScreen", bufferScreen.text.toString())
+        outState.putString("outputScreen", outputScreen.text.toString())
+        outState.putString("operation", operation)
+        outState.putBoolean("isBracket", isBracket)
+        outState.putBoolean("isNegative", isNegative)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
+        val lastScreen = prefs.getString("last_screen", "menu")
+        if (lastScreen=="menu"){
+            return
+        }
+        output = if (savedInstanceState.getDouble("output", Double.NaN).isNaN()) {
+            null
+        } else {
+            savedInstanceState.getDouble("output", 0.0)
+        }
+
+        bufferScreen.text = savedInstanceState.getString("bufferScreen", "")
+        outputScreen.text = savedInstanceState.getString("outputScreen", "")
+        operation = savedInstanceState.getString("operation", null)
+        isBracket = savedInstanceState.getBoolean("isBracket", false)
+        isNegative = savedInstanceState.getBoolean("isNegative", false)
+    }
 
     private fun openScienceCalculator(){
+        enableEdgeToEdge()
         //Setting content view to science calculator
         setContentView(R.layout.science_calculator)
-        //Adjusting padding if view is available
-        adjustPadding()
         //Configuring common elements, because science calculator uses the same resources as simple, just adding its own to layout.
         configureCommonElements()
         //Configure science buttons only for science calculator
-        configureScienceButtons();
-
+        configureScienceButtons()
+        //Adjusting padding if view is available.
+        adjustPadding()
     }
 
     private fun openSimpleCalculator(){
+        enableEdgeToEdge()
         //Setting content view to simple calculator.
         setContentView(R.layout.activity_main)
-        //Adjusting padding if view is available.
-        adjustPadding()
         //Configuring only common elements, because science calculator uses the same resources in it's core.
         configureCommonElements()
+        //Adjusting padding if view is available.
+        adjustPadding()
     }
 
     private fun adjustPadding(){
@@ -198,12 +206,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openMenu(){
+        enableEdgeToEdge()
         //Setting content view to manu layout
         setContentView(R.layout.menu)
-        //Adjusting padding if view is available.
-        adjustPadding()
         //Buttons in menu initialization.
         configureMenuButtons()
+        //Adjusting padding if view is available.
+        adjustPadding()
     }
 
     private fun saveState(state: String){
@@ -225,6 +234,8 @@ class MainActivity : AppCompatActivity() {
             "simple" -> openSimpleCalculator()
             else -> openMenu()
         }
+        //Adjusting padding if view is available.
+        adjustPadding()
     }
 
     private fun configureMenuButtons(){
@@ -302,7 +313,7 @@ class MainActivity : AppCompatActivity() {
         }
         output = 10.0.pow(outputScreen.text.toString().toDouble())
         updateBuffer("10^")
-        setTextToView(output.toString());
+        setTextToView(output.toString())
     }
 
     private fun actionButtonLogX(){
@@ -311,7 +322,7 @@ class MainActivity : AppCompatActivity() {
         }
         output = log10(outputScreen.text.toString().toDouble())
         updateBuffer("log")
-        setTextToView(output.toString());
+        setTextToView(output.toString())
     }
 
     private fun actionButtonChangeSign() {
@@ -368,7 +379,7 @@ class MainActivity : AppCompatActivity() {
         }
         output = sqrt(outputScreen.text.toString().toDouble())
         updateBuffer("√")
-        setTextToView(output.toString());
+        setTextToView(output.toString())
     }
 
     private fun validateDotExpression(): Boolean{
@@ -394,20 +405,10 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
-        val sign: String = "."
+        val sign = "."
         addTextToView(sign)
     }
 
-    private val trigonometryFunctions = mapOf(
-        "SIN" to { output = sin(outputScreen.text.toString().toDouble()) },
-        "ASIN" to { output = asin(outputScreen.text.toString().toDouble()) },
-        "COS" to { output = cos(outputScreen.text.toString().toDouble()) },
-        "ACOS" to { output = acos(outputScreen.text.toString().toDouble()) },
-        "TAN" to { output = tan(outputScreen.text.toString().toDouble()) },
-        "ATAN" to { output = atan(outputScreen.text.toString().toDouble()) },
-        "CTAN" to { output = 1 / tan(outputScreen.text.toString().toDouble()) },
-        "ACTAN" to { output = atan(outputScreen.text.toString().toDouble()) }
-    )
 
     private fun trigonometryHandling(type: String) {
         if (!possibleToComputate()){
