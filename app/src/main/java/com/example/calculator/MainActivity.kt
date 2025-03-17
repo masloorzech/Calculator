@@ -155,11 +155,11 @@ class MainActivity : AppCompatActivity() {
             R.id.actionButtonSinX       to      {trigonometryHandling("SIN")},
             R.id.actionButtonCosX       to      {trigonometryHandling("COS")},
             R.id.actionButtonTanX       to      {trigonometryHandling("TAN")},
-            R.id.actionButtonCTanX       to      {trigonometryHandling("CTAN")},
-            R.id.actionButtonASinX       to      {trigonometryHandling("ASIN")},
-            R.id.actionButtonACosX       to      {trigonometryHandling("ACOS")},
-            R.id.actionButtonATanX       to      {trigonometryHandling("ATAN")},
-            R.id.actionButtonACtanX       to      {trigonometryHandling("ACTAN")}
+            R.id.actionButtonCTanX      to      {trigonometryHandling("CTAN")},
+            R.id.actionButtonASinX      to      {trigonometryHandling("ASIN")},
+            R.id.actionButtonACosX      to      {trigonometryHandling("ACOS")},
+            R.id.actionButtonATanX      to      {trigonometryHandling("ATAN")},
+            R.id.actionButtonACtanX      to      {trigonometryHandling("ACTAN")}
 
             ).forEach{ (id,action)->findViewById<Button>(id).apply {
                 setOnClickListener { action() }
