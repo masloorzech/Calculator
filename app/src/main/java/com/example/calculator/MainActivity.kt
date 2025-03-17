@@ -49,47 +49,6 @@ class MainActivity : AppCompatActivity() {
         "PERCENTAGE" to { a: Double, b: Double -> (a / 100.0) * b }
     )
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
-        val lastScreen = prefs.getString("last_screen", "menu")
-        if (lastScreen=="menu"){
-            return
-        }
-
-        if (output != null) {
-            outState.putDouble("output", output ?: 0.0)
-        } else {
-            outState.putDouble("output", Double.NaN)
-        }
-        outState.putString("bufferScreen", bufferScreen.text.toString())
-        outState.putString("outputScreen", outputScreen.text.toString())
-        outState.putString("operation", operation)
-        outState.putBoolean("isBracket", isBracket)
-        outState.putBoolean("isNegative", isNegative)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
-        val lastScreen = prefs.getString("last_screen", "menu")
-        if (lastScreen=="menu"){
-            return
-        }
-        output = if (savedInstanceState.getDouble("output", Double.NaN).isNaN()) {
-            null
-        } else {
-            savedInstanceState.getDouble("output", 0.0)
-        }
-
-        bufferScreen.text = savedInstanceState.getString("bufferScreen", "")
-        outputScreen.text = savedInstanceState.getString("outputScreen", "")
-        operation = savedInstanceState.getString("operation", null)
-        isBracket = savedInstanceState.getBoolean("isBracket", false)
-        isNegative = savedInstanceState.getBoolean("isNegative", false)
-    }
-
     private fun configureCommonElements(){
         configureCommonDisplays()
         configureCommonButtons()
@@ -166,26 +125,67 @@ class MainActivity : AppCompatActivity() {
         }}
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
+        val lastScreen = prefs.getString("last_screen", "menu")
+        if (lastScreen=="menu"){
+            return
+        }
+
+        if (output != null) {
+            outState.putDouble("output", output ?: 0.0)
+        } else {
+            outState.putDouble("output", Double.NaN)
+        }
+        outState.putString("bufferScreen", bufferScreen.text.toString())
+        outState.putString("outputScreen", outputScreen.text.toString())
+        outState.putString("operation", operation)
+        outState.putBoolean("isBracket", isBracket)
+        outState.putBoolean("isNegative", isNegative)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
+        val lastScreen = prefs.getString("last_screen", "menu")
+        if (lastScreen=="menu"){
+            return
+        }
+        output = if (savedInstanceState.getDouble("output", Double.NaN).isNaN()) {
+            null
+        } else {
+            savedInstanceState.getDouble("output", 0.0)
+        }
+
+        bufferScreen.text = savedInstanceState.getString("bufferScreen", "")
+        outputScreen.text = savedInstanceState.getString("outputScreen", "")
+        operation = savedInstanceState.getString("operation", null)
+        isBracket = savedInstanceState.getBoolean("isBracket", false)
+        isNegative = savedInstanceState.getBoolean("isNegative", false)
+    }
 
     private fun openScienceCalculator(){
+        enableEdgeToEdge()
         //Setting content view to science calculator
         setContentView(R.layout.science_calculator)
-        //Adjusting padding if view is available
-        adjustPadding()
         //Configuring common elements, because science calculator uses the same resources as simple, just adding its own to layout.
         configureCommonElements()
         //Configure science buttons only for science calculator
-        configureScienceButtons();
-
+        configureScienceButtons()
+        //Adjusting padding if view is available.
+        adjustPadding()
     }
 
     private fun openSimpleCalculator(){
+        enableEdgeToEdge()
         //Setting content view to simple calculator.
         setContentView(R.layout.activity_main)
-        //Adjusting padding if view is available.
-        adjustPadding()
         //Configuring only common elements, because science calculator uses the same resources in it's core.
         configureCommonElements()
+        //Adjusting padding if view is available.
+        adjustPadding()
     }
 
     private fun adjustPadding(){
@@ -198,12 +198,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openMenu(){
+        enableEdgeToEdge()
         //Setting content view to manu layout
         setContentView(R.layout.menu)
-        //Adjusting padding if view is available.
-        adjustPadding()
         //Buttons in menu initialization.
         configureMenuButtons()
+        //Adjusting padding if view is available.
+        adjustPadding()
     }
 
     private fun saveState(state: String){
@@ -225,6 +226,8 @@ class MainActivity : AppCompatActivity() {
             "simple" -> openSimpleCalculator()
             else -> openMenu()
         }
+        //Adjusting padding if view is available.
+        adjustPadding()
     }
 
     private fun configureMenuButtons(){
