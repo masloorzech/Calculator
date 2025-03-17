@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
 
         val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
         val lastScreen = prefs.getString("last_screen", "menu")
-        if (lastScreen=="menu"){
+        if (lastScreen=="menu" || lastScreen=="aboutme"){
             return
         }
 
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         val prefs = getSharedPreferences("app_state", MODE_PRIVATE)
         val lastScreen = prefs.getString("last_screen", "menu")
-        if (lastScreen=="menu"){
+        if (lastScreen=="menu" || lastScreen=="aboutme"){
             return
         }
         output = if (savedInstanceState.getDouble("output", Double.NaN).isNaN()) {
@@ -172,6 +172,15 @@ class MainActivity : AppCompatActivity() {
         operation = savedInstanceState.getString("operation", null)
         isBracket = savedInstanceState.getBoolean("isBracket", false)
         isNegative = savedInstanceState.getBoolean("isNegative", false)
+    }
+
+    private fun adjustPadding(){
+        //Adjusting padding if system bars exists.
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 
     private fun openScienceCalculator(){
@@ -196,15 +205,6 @@ class MainActivity : AppCompatActivity() {
         adjustPadding()
     }
 
-    private fun adjustPadding(){
-        //Adjusting padding if system bars exists.
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-    }
-
     private fun openMenu(){
         enableEdgeToEdge()
         //Setting content view to manu layout
@@ -215,9 +215,30 @@ class MainActivity : AppCompatActivity() {
         adjustPadding()
     }
 
+    private fun openAboutMe(){
+        Log.d("CalculatorApp", "Opening About Me screen")
+        enableEdgeToEdge()
+        try {
+            setContentView(R.layout.about_me)
+            Log.d("CalculatorApp", "Content view set to about_me")
+            val backButton = findViewById<Button>(R.id.buttonBack)
+            Log.d("CalculatorApp", "Back button found: " + (backButton != null))
+            backButton.setOnClickListener{
+                Log.d("CalculatorApp", "Back button clicked")
+                openMenu()
+            }
+            adjustPadding()
+            Log.d("CalculatorApp", "About Me screen setup complete")
+        } catch (e: Exception) {
+            Log.e("CalculatorApp", "Error in openAboutMe()", e)
+        }
+    }
+
+
     private fun saveState(state: String){
-        getSharedPreferences("app_state", MODE_PRIVATE).edit() {
+        getSharedPreferences("app_state", MODE_PRIVATE).edit().apply {
             putString("last_screen", state)
+            apply()
         }
     }
 
@@ -232,6 +253,7 @@ class MainActivity : AppCompatActivity() {
         when (lastScreen) {
             "science" -> openScienceCalculator()
             "simple" -> openSimpleCalculator()
+            "aboutme"-> openAboutMe()
             else -> openMenu()
         }
         //Adjusting padding if view is available.
@@ -239,14 +261,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureMenuButtons(){
+        Log.d("CalculatorApp", "Inicialised buttons")
         findViewById<Button>(R.id.menuButtonQuit).setOnClickListener {
             finishAffinity()
         }
         findViewById<Button>(R.id.menuButtonAboutMe).setOnClickListener{
-            //Not implemented yet
-            //TODO implement asap
+            Log.d("CalculatorApp", "About Me button clicked")
+            saveState("aboutme")
+            Log.d("CalculatorApp", "State saved as 'aboutme'")
+            openAboutMe()
+            Log.d("CalculatorApp", "openAboutMe() executed")
         }
         findViewById<Button>(R.id.menuButtonSimpleCalculator).setOnClickListener{
+            Log.e("message", "x")
             saveState("simple")
             openSimpleCalculator()
         }
