@@ -1,11 +1,8 @@
 package com.example.calculator
 
 import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
