@@ -313,7 +313,7 @@ class MainActivity : AppCompatActivity() {
         }
         output = 10.0.pow(outputScreen.text.toString().toDouble())
         updateBuffer("10^")
-        setTextToView(output.toString());
+        setTextToView(output.toString())
     }
 
     private fun actionButtonLogX(){
@@ -322,7 +322,7 @@ class MainActivity : AppCompatActivity() {
         }
         output = log10(outputScreen.text.toString().toDouble())
         updateBuffer("log")
-        setTextToView(output.toString());
+        setTextToView(output.toString())
     }
 
     private fun actionButtonChangeSign() {
@@ -379,7 +379,7 @@ class MainActivity : AppCompatActivity() {
         }
         output = sqrt(outputScreen.text.toString().toDouble())
         updateBuffer("√")
-        setTextToView(output.toString());
+        setTextToView(output.toString())
     }
 
     private fun validateDotExpression(): Boolean{
@@ -405,7 +405,7 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
-        val sign: String = "."
+        val sign = "."
         addTextToView(sign)
     }
 
