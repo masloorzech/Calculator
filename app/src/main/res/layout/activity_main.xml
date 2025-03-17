@@ -33,21 +33,19 @@
         style="@style/CustomMemoryTextField"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMaxTextSize="64sp"
         android:autoSizeTextType="uniform"
         android:breakStrategy="high_quality"
         android:clickable="false"
-        android:gravity="bottom|left"
+        android:gravity="center_horizontal|start|center_vertical"
         android:maxLength="32"
         android:maxLines="1"
-        android:textAlignment="viewStart"
-        android:textSize="30sp"
+        android:textSize="64sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/menuButtonSimpleCalculator"
