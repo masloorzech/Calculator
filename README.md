@@ -36,17 +36,7 @@ Jetpack Components (ViewCompat, WindowInsetsCompat)
 
 ## 📂 Project Structure
 
-/app
-├── src/main/java/com/example/calculator
-│   ├── MainActivity.kt
-│   ├── AboutMeActivity.kt
-│
-├── res/layout
-│   ├── activity_main.xml
-│   ├── about_me.xml
-│
-├── res/drawable
-│   ├── (icons, images, etc.)
+<pre> ``` /app ├── src/main/java/com/example/calculator │ ├── MainActivity.kt │ ├── AboutMeActivity.kt │ ├── res/layout │ ├── activity_main.xml │ ├── about_me.xml │ ├── res/drawable │ ├── (icons, images, etc.) ``` </pre>
 
 ## 📖 How to Run
 
