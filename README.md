@@ -29,14 +29,8 @@ Saves the last visited screen using SharedPreferences
 ## 🛠️ Technologies Used
 
 Kotlin
-
 Android SDK
-
 Jetpack Components (ViewCompat, WindowInsetsCompat)
-
-## 📂 Project Structure
-
-<pre> ``` /app ├── src/main/java/com/example/calculator │ ├── MainActivity.kt │ ├── AboutMeActivity.kt │ ├── res/layout │ ├── activity_main.xml │ ├── about_me.xml │ ├── res/drawable │ ├── (icons, images, etc.) ``` </pre>
 
 ## 📖 How to Run
 
