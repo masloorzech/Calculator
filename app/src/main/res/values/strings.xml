@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Calculator</string>
-    <string name= "memory_description">Memory:</string>
+    <string name="memory_description">Memory:</string>
     <string name="ac">AC</string>
     <string name="about_me"><![CDATA[About Me\n
    I am an IT student with a passion for programming, game development, and system design. I work on various projects,
@@ -8,4 +8,5 @@
    such as C, Kotlin, Vulkan API, and SDL2. In my free time, I also design D&D campaigns and work on optimizing algorithms.\nAbout the Calculator:\n This calculator app offers both a simple and scientific mode, allowing users to perform basic
    and advanced calculations. It dynamically adjusts its layout to different screen sizes and orientations for a seamless user experience.
    The app features real-time state saving, adaptive UI adjustments, and an intuitive design for efficiency and ease of use.]]></string>
+    <string name="title_activity_main2">MainActivity2</string>
 </resources>
