@@ -16,7 +16,7 @@ Saves the last visited screen using SharedPreferences
 
 ## 📷 Screenshots
 
-![main_menu](https://github.com/user-attachments/assets/1a334e15-925d-4467-95f9-178f2f858f6d | width=300)
+<img src="https://github.com/user-attachments/assets/1a334e15-925d-4467-95f9-178f2f858f6d" style="width:300px;">
 
 ![simple_calculator](https://github.com/user-attachments/assets/01fdf176-610f-4268-94b1-ffc3689179cf)
 
