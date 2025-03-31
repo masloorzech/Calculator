@@ -1,7 +1,4 @@
 # Calculator App
-
-## 📌 About
-
 This is a simple Android calculator application built using Kotlin. The app includes different screens, such as an "About Me" page, and supports saving the user's last visited screen using SharedPreferences.
 
 ## 🚀 Features
